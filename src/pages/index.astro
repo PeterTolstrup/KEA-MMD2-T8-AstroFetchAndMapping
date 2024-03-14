@@ -14,6 +14,7 @@ const people = await fetch(
 ).then((response) => {
   return response.json();
 });
+
 console.log("people", people);
 ---
 
@@ -26,13 +27,15 @@ console.log("people", people);
     <title>Fetch & Mapping</title>
   </head>
   <body>
-    <h1>Fetch & Mapping</h1>
-    <p>Let's try mapping</p>
-	<h2>People in Card Components</h2>
+    <header>
+      <h1>Fetch & Mapping</h1>
+      <p>Let's try mapping</p>
+    </header>
+    <h2>People in Card Components</h2>
     <section class="people">
       {
         people.map((person) => {
-          return <Card data={person}/>;
+          return <Card data={person} />;
         })
       }
     </section>
@@ -40,9 +43,12 @@ console.log("people", people);
 </html>
 
 <style>
-	.people {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-		gap: 1rem;
-	}
+  header {
+    margin-bottom: 2rem;
+  }
+  .people {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
 </style>
