@@ -1,0 +1,16 @@
+---
+const { data } = Astro.props;
+---
+
+<article>
+  <img src={"../img/" + data.img} alt={"Image of " + data.name} />
+  <h3>{data.name + " " + data.surname}</h3>
+  <p>{data.jobtitle}</p>
+</article>
+
+<style>
+  article {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+</style>

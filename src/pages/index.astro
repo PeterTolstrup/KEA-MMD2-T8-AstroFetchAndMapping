@@ -1,16 +1,48 @@
 ---
+import "../styles/style.css";
+import Card from "../components/Card.astro";
 
+const people = await fetch(
+  "https://plqtdvlzsqmpgcqontkl.supabase.co/rest/v1/people",
+  {
+    method: "GET",
+    headers: {
+      apikey:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBscXRkdmx6c3FtcGdjcW9udGtsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTA0MjQ2NzUsImV4cCI6MjAyNjAwMDY3NX0.FVdmF1_xeGDQTSU-blKexVvhSiBIFJuO4ksoqIBJb-E",
+    },
+  }
+).then((response) => {
+  return response.json();
+});
+console.log("people", people);
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Fetch & Mapping</title>
+  </head>
+  <body>
+    <h1>Fetch & Mapping</h1>
+    <p>Let's try mapping</p>
+	<h2>People in Card Components</h2>
+    <section class="people">
+      {
+        people.map((person) => {
+          return <Card data={person}/>;
+        })
+      }
+    </section>
+  </body>
 </html>
+
+<style>
+	.people {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+		gap: 1rem;
+	}
+</style>
